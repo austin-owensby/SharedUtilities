@@ -1,0 +1,2 @@
+# Shared Utilities
+This library contains multiple utility functions I've put together for solving coding problems (Such as Advent of Code) so that multiple repos can have a single shared source of utilities.
