@@ -5,14 +5,37 @@ using System.Numerics;
 
 
 #region Useful Classes
+/// <summary>
+/// A basic X,Y coordinate with a Value
+/// </summary>
 public class Point
 {
+    /// <summary>
+    /// X coordinate
+    /// </summary>
+    /// <value></value>
     public int X { get; set; }
+    /// <summary>
+    /// Y coordinate
+    /// </summary>
+    /// <value></value>
     public int Y { get; set; }
+    /// <summary>
+    /// Value at the point
+    /// </summary>
+    /// <value></value>
     public int Value { get; set; }
 
+    /// <summary>
+    /// Basic constructor
+    /// </summary>
     public Point() { }
 
+    /// <summary>
+    /// Construct with initial coordinate
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
     public Point(int x, int y)
     {
         X = x;
@@ -33,7 +56,7 @@ public class Point
 /// <summary>
 /// This class holds a handful of custom helper functions to make solving these problems easier
 /// </summary>
-public static class SharedUtilities
+public static class Utility
 {
     #region Array Operations
     /// <summary>
@@ -197,7 +220,7 @@ public static class SharedUtilities
             ? list.Select(t => new T[] { t })
             : list.GetPermutations(length - 1)
             .SelectMany(t => list.Where(e => !t.Contains(e)),
-                (t1, t2) => t1.Concat(new T[] { t2 }));
+                (t1, t2) => t1.Concat([t2]));
     }
 
     /// <summary>
@@ -214,7 +237,7 @@ public static class SharedUtilities
             ? list.Select(t => new T[] { t })
             : list.GetCombinations(length - 1)
             .SelectMany(t => list.Where(o => o.CompareTo(t.Last()) > 0),
-                (t1, t2) => t1.Concat(new T[] { t2 }));
+                (t1, t2) => t1.Concat([t2]));
     }
 
     /// <summary>
@@ -594,7 +617,8 @@ public static class SharedUtilities
     /// <summary>
     /// Given 2 points. calculate the manhattan distance
     /// </summary>
-    /// <param name="point"></param>
+    /// <param name="pointA"></param>
+    /// <param name="pointB"></param>
     /// <returns></returns>
     public static int ManhattanDistance(this Point pointA, Point pointB) {
         return Math.Abs(pointA.X - pointB.X) + Math.Abs(pointA.Y - pointB.Y);
