@@ -2,6 +2,7 @@
 
 using System.Text.RegularExpressions;
 using System.Numerics;
+using System.Globalization;
 
 
 #region Useful Classes
@@ -434,6 +435,23 @@ public static class Utility
     /// <returns></returns>
     public static List<List<long>> ToLongGrid(this List<string> lines) {
         return lines.Select(l => l.Select(c => c.ToLong()).ToList()).ToList();
+    }
+    
+    /// <summary>
+    /// Splits a string into a list of text elements (extended grapheme clusters). Useful for needing to index on user perceived characters
+    /// </summary>
+    /// <param name="input"></param>
+    /// <remarks>Ex. "🌲1ä💩".ToTextElementList() returns ["🌲", "1", "ä", "💩"]</remarks>
+    /// <returns></returns>
+    public static List<string> ToTextElementList(this string input) {
+        List<string> stringArray = [];
+
+        TextElementEnumerator iterator = StringInfo.GetTextElementEnumerator(input);
+        while (iterator.MoveNext()) {
+            stringArray.Add(iterator.GetTextElement());
+        }
+
+        return stringArray;
     }
     #endregion
 
