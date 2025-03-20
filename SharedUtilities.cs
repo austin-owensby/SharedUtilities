@@ -359,7 +359,7 @@ public static class Utility
     /// <param name="list"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static IEnumerable<T> SelectMany<T>(this List<List<T>> list) {
+    public static IEnumerable<T> SelectMany<T>(this IEnumerable<IEnumerable<T>> list) {
         return list.SelectMany(x => x);
     }
     #endregion
