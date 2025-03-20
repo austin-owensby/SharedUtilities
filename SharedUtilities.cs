@@ -352,6 +352,16 @@ public static class Utility
 
         return neighbors;
     }
+
+    /// <summary>
+    /// Flattens a 2D array into a 1D array
+    /// </summary>
+    /// <param name="list"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static IEnumerable<T> SelectMany<T>(this List<List<T>> list) {
+        return list.SelectMany(x => x);
+    }
     #endregion
 
     #region String Operations
